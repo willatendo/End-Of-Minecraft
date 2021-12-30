@@ -1,0 +1,53 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="Creative Commons"
+issueTrackerURL="https://github.com/willatendo/Lost-Worlds/issues"
+
+[[mods]]
+modId="endofminecraft"
+version="v1.0.0"
+displayName="End of Minecraft"
+updateJSONURL="https://github.com/willatendo/Lost-Worlds/raw/Forge-1.16.5/updates.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/the-lost-worlds-forge"
+catalogueItemIcon="minecraft:dirt"
+configuredBackground="minecraft:textures/block/dirt.png"
+# logoFile="lostworlds.png"
+authors="Willatendo"
+description='''
+A mod that makes the world of Minecraft a nuclear wasteland.
+'''
+
+[[dependencies.lostworlds]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.lostworlds]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
+    
+[[dependencies.lostworlds]]
+    modId="jei"
+    mandatory=false
+    versionRange="[7.6.1.75,)"
+    ordering="NONE"
+    side="CLIENT"
+    
+[[dependencies.lostworlds]]
+    modId="catalogue"
+    mandatory=false
+    versionRange="[1.1.0,)"
+    ordering="NONE"
+    side="CLIENT"
+    
+[[dependencies.lostworlds]]
+    modId="configured"
+    mandatory=false
+    versionRange="[0.4.2,)"
+    ordering="NONE"
+    side="CLIENT"

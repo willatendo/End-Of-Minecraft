@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "endofminecraft.mixin",
+	"minVersion": "0.8",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"PortalSizeMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"refmap": "lostworlds.mixins.refmap.json"
+}
