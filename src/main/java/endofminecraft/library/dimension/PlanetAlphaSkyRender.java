@@ -29,19 +29,18 @@ import net.minecraftforge.client.ISkyRenderHandler;
 public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 	private static final ResourceLocation SUN_TEXTURES = ModUtils.rL("textures/environment/planet_alpha_suns.png");
 	private static final ResourceLocation MOON_1_TEXTURES = ModUtils.rL("textures/environment/planet_alpha_moon_1_phases.png");
-	private static final ResourceLocation MOON_2_TEXTURES = ModUtils.rL("textures/environment/planet_alpha_moon_1_phases.png");
+	// private static final ResourceLocation MOON_2_TEXTURES =
+	// ModUtils.rL("textures/environment/planet_alpha_moon_1_phases.png");
 	private static final ResourceLocation PLANET_BETA_TEXTURE = ModUtils.rL("textures/environment/planet_beta.png");
 	private VertexBuffer starVBO;
 	private final VertexFormat vertexBufferFormat = DefaultVertexFormats.POSITION;
 
-	public PlanetAlphaSkyRender() 
-	{
+	public PlanetAlphaSkyRender() {
 		generateStars();
 	}
 
 	@Override
-	public void render(int ticks, float partialTicks, MatrixStack matrix, ClientWorld world, Minecraft mc) 
-	{
+	public void render(int ticks, float partialTicks, MatrixStack matrix, ClientWorld world, Minecraft mc) {
 		WorldRenderer renderer = mc.levelRenderer;
 
 		RenderSystem.disableTexture();
@@ -64,8 +63,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		float[] setcol = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
-		if(setcol != null) 
-		{
+		if (setcol != null) {
 			RenderSystem.disableTexture();
 			RenderSystem.shadeModel(7425);
 			matrix.pushPose();
@@ -80,8 +78,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 			bufferbuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
 			bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(ssRed, ssGreen, ssBlue, setcol[3]).endVertex();
 
-			for(int j = 0; j <= 16; ++j) 
-			{
+			for (int j = 0; j <= 16; ++j) {
 				float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
 				float f8 = MathHelper.sin(f7);
 				float f9 = MathHelper.cos(f7);
@@ -101,7 +98,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		matrix.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
 		Matrix4f matrix4f1 = matrix.last().pose();
 
-		//Suns
+		// Suns
 		float f12 = 30.0F;
 		renderer.textureManager.bind(SUN_TEXTURES);
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -111,30 +108,58 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
 		bufferbuilder.end();
 		WorldVertexBufferUploader.end(bufferbuilder);
-		
-		//Moon 1
-        f12 = 20.0F;
-        renderer.textureManager.bind(MOON_1_TEXTURES);
-        int k = world.getMoonPhase();
-        int l = k % 4;
-        int i1 = k / 4 % 2;
-        float f13 = (float)(l + 0) / 4.0F;
-        float f14 = (float)(i1 + 0) / 2.0F;
-        float f15 = (float)(l + 1) / 4.0F;
-        float f16 = (float)(i1 + 1) / 2.0F;
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(f15, f16).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(f13, f16).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(f13, f14).endVertex();
-        bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(f15, f14).endVertex();
-        bufferbuilder.end();
-        WorldVertexBufferUploader.end(bufferbuilder);
 
-        //Stars
+		// Planet Beta
+		f12 = 50.0F;
+		renderer.textureManager.bind(PLANET_BETA_TEXTURE);
+		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(1.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.end();
+		WorldVertexBufferUploader.end(bufferbuilder);
+
+		// Moon 1
+		f12 = 20.0F;
+		renderer.textureManager.bind(MOON_1_TEXTURES);
+		int moon1phase = world.getMoonPhase();
+		int moon1Y = moon1phase % 4;
+		int moon1X = moon1phase / 4 % 2;
+		float u1 = (float) (moon1Y + 0) / 4.0F;
+		float u2 = (float) (moon1X + 0) / 2.0F;
+		float v1 = (float) (moon1Y + 1) / 4.0F;
+		float v2 = (float) (moon1X + 1) / 2.0F;
+		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(v1, v2).endVertex();
+		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(u1, v2).endVertex();
+		bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(u1, u2).endVertex();
+		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(v1, u2).endVertex();
+		bufferbuilder.end();
+		WorldVertexBufferUploader.end(bufferbuilder);
+
+		// Moon 2
+		f12 = 100.0F;
+		renderer.textureManager.bind(MOON_1_TEXTURES);
+		int moon2phase = world.getMoonPhase();
+		int moon2Y = moon2phase % 3;
+		int moon2X = moon2phase / 4 % 1;
+		float u3 = (float) (moon2Y + 0) / 4.0F;
+		float u4 = (float) (moon2X + 0) / 2.0F;
+		float v3 = (float) (moon2Y + 1) / 4.0F;
+		float v4 = (float) (moon2X + 1) / 2.0F;
+		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(v3, v4).endVertex();
+		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(u3, v4).endVertex();
+		bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(u3, u4).endVertex();
+		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(v3, u4).endVertex();
+		bufferbuilder.end();
+		WorldVertexBufferUploader.end(bufferbuilder);
+
+		// Stars
 		RenderSystem.disableTexture();
 		float f10 = this.getStarBrightness(world, partialTicks);
-		if(f10 > 0.0F) 
-		{
+		if (f10 > 0.0F) {
 			RenderSystem.color4f(f10, f10, f10, f10);
 			this.starVBO.bind();
 			this.vertexBufferFormat.setupBufferState(0L);
@@ -151,8 +176,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		RenderSystem.disableTexture();
 		RenderSystem.color3f(0.0F, 0.0F, 0.0F);
 		double y = mc.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight();
-		if(y < 0.0D) 
-		{
+		if (y < 0.0D) {
 			matrix.pushPose();
 			matrix.translate(0.0D, 12.0D, 0.0D);
 			renderer.darkBuffer.bind();
@@ -169,12 +193,10 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		RenderSystem.disableFog();
 	}
 
-	private void generateStars() 
-	{
+	private void generateStars() {
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
-		if(this.starVBO != null) 
-		{
+		if (this.starVBO != null) {
 			this.starVBO.close();
 		}
 
@@ -183,15 +205,13 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		Random random = new Random(10842L);
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION);
 
-		for(int i = 0; i < 1500; ++i) 
-		{
+		for (int i = 0; i < 1500; ++i) {
 			double x = (double) (random.nextFloat() * 2.0F - 1.0F);
 			double y = (double) (random.nextFloat() * 2.0F - 1.0F);
 			double z = (double) (random.nextFloat() * 2.0F - 1.0F);
 			double d3 = (double) (0.15F + random.nextFloat() * 0.1F);
 			double area = x * x + y * y + z * z;
-			if(area < 1.0D && area > 0.01D) 
-			{
+			if (area < 1.0D && area > 0.01D) {
 				area = 1.0D / Math.sqrt(area);
 				x = x * area;
 				y = y * area;
@@ -209,8 +229,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 				double d15 = Math.sin(d14);
 				double d16 = Math.cos(d14);
 
-				for(int j = 0; j < 4; ++j) 
-				{
+				for (int j = 0; j < 4; ++j) {
 					double d18 = (double) ((j & 2) - 1) * d3;
 					double d19 = (double) ((j + 1 & 2) - 1) * d3;
 					double d21 = d18 * d16 - d19 * d15;
@@ -229,8 +248,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public float getStarBrightness(ClientWorld world, float par1) 
-	{
+	public float getStarBrightness(ClientWorld world, float par1) {
 		return world.getStarBrightness(par1);
 	}
 }

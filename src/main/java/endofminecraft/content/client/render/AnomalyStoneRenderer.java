@@ -14,16 +14,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import tyrannotitanlib.library.tyrannomation.renderers.TyrannomationBlockmationRenderer;
 
 @OnlyIn(Dist.CLIENT)
-public class AnomalyStoneRenderer extends TyrannomationBlockmationRenderer<AnomalyStoneTileEntity>
-{
-	public AnomalyStoneRenderer(TileEntityRendererDispatcher rendererDispatcherIn) 
-	{
+public class AnomalyStoneRenderer extends TyrannomationBlockmationRenderer<AnomalyStoneTileEntity> {
+	public AnomalyStoneRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
 		super(rendererDispatcherIn, new AnomalyStoneModel());
 	}
-	
+
 	@Override
-	public RenderType getRenderType(AnomalyStoneTileEntity animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) 
-	{
+	public RenderType getRenderType(AnomalyStoneTileEntity animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
 		return RenderType.entityTranslucent(getTextureLocation(animatable));
 	}
 }

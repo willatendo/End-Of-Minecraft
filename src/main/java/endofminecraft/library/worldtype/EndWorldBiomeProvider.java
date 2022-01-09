@@ -17,17 +17,15 @@ import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.layer.Layer;
 
-public class EndWorldBiomeProvider extends BiomeProvider
-{
+public class EndWorldBiomeProvider extends BiomeProvider {
 	public static final Codec<EndWorldBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(Codec.LONG.fieldOf("seed").orElse(EndWorldChunkGenerator.hackSeed).forGetter((obj) -> obj.seed), RegistryLookupCodec.create(Registry.BIOME_REGISTRY).forGetter((obj) -> obj.registry)).apply(instance, instance.stable(EndWorldBiomeProvider::new)));
 
 	private final long seed;
 	private final Registry<Biome> registry;
 	private final Layer genBiomes;
 	private static final List<RegistryKey<Biome>> BIOMES = ImmutableList.of(BiomeInit.WASTELAND_KEY, BiomeInit.SCORCHLAND_KEY);
-	
-	public EndWorldBiomeProvider(long seed, Registry<Biome> registry) 
-	{		
+
+	public EndWorldBiomeProvider(long seed, Registry<Biome> registry) {
 		super(BIOMES.stream().map(define -> () -> registry.getOrThrow(define)));
 		this.seed = seed;
 		this.registry = registry;
@@ -35,40 +33,30 @@ public class EndWorldBiomeProvider extends BiomeProvider
 	}
 
 	@Override
-	public BiomeProvider withSeed(long s) 
-	{
+	public BiomeProvider withSeed(long s) {
 		return new EndWorldBiomeProvider(s, registry);
 	}
-	
+
 	@Override
-	protected Codec<? extends BiomeProvider> codec() 
-	{
+	protected Codec<? extends BiomeProvider> codec() {
 		return CODEC;
 	}
-	
+
 	@Override
-	public Biome getNoiseBiome(int x, int y, int z) 
-	{
+	public Biome getNoiseBiome(int x, int y, int z) {
 		return this.getBiomeFromPos(registry, x, z);
 	}
 
-	public Biome getBiomeFromPos(Registry<Biome> registry, int x, int z) 
-	{
+	public Biome getBiomeFromPos(Registry<Biome> registry, int x, int z) {
 		int i = genBiomes.area.get(x, z);
 		Biome biome = registry.byId(i);
-		if(biome == null) 
-		{
-			if(SharedConstants.IS_RUNNING_IN_IDE) 
-			{
+		if (biome == null) {
+			if (SharedConstants.IS_RUNNING_IN_IDE) {
 				throw Util.pauseInIde(new IllegalStateException("Unknown biome id: " + i));
-			} 
-			else 
-			{
+			} else {
 				return registry.get(BiomeRegistry.byId(0));
 			}
-		} 
-		else 
-		{
+		} else {
 			return biome;
 		}
 	}

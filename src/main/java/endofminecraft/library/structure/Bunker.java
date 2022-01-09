@@ -1,6 +1,5 @@
 package endofminecraft.library.structure;
 
-public class Bunker 
-{
-	
+public class Bunker {
+
 }

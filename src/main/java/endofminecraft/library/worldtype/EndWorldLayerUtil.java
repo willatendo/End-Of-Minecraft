@@ -14,18 +14,15 @@ import net.minecraft.world.gen.layer.Layer;
 import net.minecraft.world.gen.layer.LayerUtil;
 import net.minecraft.world.gen.layer.ZoomLayer;
 
-public class EndWorldLayerUtil 
-{
+public class EndWorldLayerUtil {
 	private static Registry<Biome> biomeRegistry;
-	
-	static int getBiomeId(RegistryKey<Biome> define) 
-	{
+
+	static int getBiomeId(RegistryKey<Biome> define) {
 		Biome biome = biomeRegistry.get(define);
 		return biomeRegistry.getId(biome);
 	}
-	
-	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> makeLayers(LongFunction<C> contextFactory, Registry<Biome> registry) 
-	{
+
+	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> makeLayers(LongFunction<C> contextFactory, Registry<Biome> registry) {
 		biomeRegistry = registry;
 
 		IAreaFactory<T> biomes = new EndWorldBiomeLayer().run(contextFactory.apply(1L));
@@ -42,8 +39,7 @@ public class EndWorldLayerUtil
 		return biomes;
 	}
 
-	public static Layer makeLayers(long seed, Registry<Biome> registry) 
-	{
+	public static Layer makeLayers(long seed, Registry<Biome> registry) {
 		biomeRegistry = registry;
 		IAreaFactory<LazyArea> areaFactory = makeLayers((contextSeed) -> new LazyAreaLayerContext(25, seed, contextSeed), registry);
 		return new Layer(areaFactory);

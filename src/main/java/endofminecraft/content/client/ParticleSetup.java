@@ -12,15 +12,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @EventBusSubscriber(modid = ModUtils.ID, bus = Bus.MOD, value = Dist.CLIENT)
-public class ParticleSetup 
-{
+public class ParticleSetup {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public static void registerParticles(ParticleFactoryRegisterEvent event) 
-	{
+	public static void registerParticles(ParticleFactoryRegisterEvent event) {
 		ModUtils.LOGGER.debug("Loading: Setting Up Particle Render");
-		
+
 		Minecraft.getInstance().particleEngine.register(ParticleInit.PLANET_ALPHA_PORTAL_PARTICLE, ModParticle.Factory::new);
-		
+
 		ModUtils.LOGGER.debug("Finished: Setting Up Particle Render");
 	}
 }
