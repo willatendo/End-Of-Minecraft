@@ -1,7 +1,7 @@
 package endofminecraft.content.server.init;
 
+import endofminecraft.content.ModRegistry;
 import endofminecraft.library.effect.IrradiatedEffect;
-import endofminecraft.library.util.ModRegistry;
 import net.minecraft.potion.Effect;
 
 public class EffectInit {

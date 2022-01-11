@@ -2,8 +2,8 @@ package endofminecraft.library.worldtype;
 
 import com.mojang.serialization.Lifecycle;
 
+import endofminecraft.content.ModRegistry;
 import endofminecraft.library.dimension.PlanetAlphaBiomeProvider;
-import endofminecraft.library.util.ModRegistry;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
@@ -32,16 +32,16 @@ public class EndWorldType extends ForgeWorldType {
 		Registry<DimensionSettings> dimensionSettingsRegistry = dynamicRegistries.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY);
 		Registry<DimensionType> dimensionTypeRegistry = dynamicRegistries.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
 
-		return new DimensionGeneratorSettings(seed, generateStructures, generateLoot, DimensionGeneratorSettings.withOverworld(dimensionTypeRegistry, planetAlpha(dimensionTypeRegistry, biomeRegistry, dimensionSettingsRegistry, seed), createChunkGenerator(biomeRegistry, dimensionSettingsRegistry, seed, null)));
+		return new DimensionGeneratorSettings(seed, generateStructures, generateLoot, DimensionGeneratorSettings.withOverworld(dimensionTypeRegistry, this.planetAlpha(dimensionTypeRegistry, biomeRegistry, dimensionSettingsRegistry, seed), this.createChunkGenerator(biomeRegistry, dimensionSettingsRegistry, seed, null)));
 	}
 
-	private static ChunkGenerator defaultPlanetAlphaGenerator(Registry<Biome> biome, Registry<DimensionSettings> dimensionSettings, long seed) {
+	private ChunkGenerator defaultPlanetAlphaGenerator(Registry<Biome> biome, Registry<DimensionSettings> dimensionSettings, long seed) {
 		return new NoiseChunkGenerator(new PlanetAlphaBiomeProvider(seed, biome), seed, () -> {
 			return dimensionSettings.getOrThrow(DimensionSettings.OVERWORLD);
 		});
 	}
 
-	public static SimpleRegistry<Dimension> planetAlpha(Registry<DimensionType> dimensionType, Registry<Biome> biome, Registry<DimensionSettings> dimensionSettings, long seed) {
+	public SimpleRegistry<Dimension> planetAlpha(Registry<DimensionType> dimensionType, Registry<Biome> biome, Registry<DimensionSettings> dimensionSettings, long seed) {
 		SimpleRegistry<Dimension> simpleregistry = new SimpleRegistry<>(Registry.LEVEL_STEM_REGISTRY, Lifecycle.experimental());
 		simpleregistry.register(ModRegistry.PLANET_ALPHA_DIMENSION, new Dimension(() -> {
 			return dimensionType.getOrThrow(ModRegistry.PLANET_ALPHA_DIMENSION_TYPE);

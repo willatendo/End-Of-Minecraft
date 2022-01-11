@@ -1,4 +1,4 @@
-package endofminecraft.library.util;
+package endofminecraft.content;
 
 import endofminecraft.content.server.init.BiomeInit;
 import endofminecraft.content.server.init.BlockInit;
@@ -31,6 +31,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.registries.ForgeRegistries;
 import tyrannotitanlib.library.tyrannoregister.TyrannoRegister;
@@ -65,6 +66,11 @@ public class ModRegistry {
 	public static EntityType<?> entity(String id, EntityType<?> entity) {
 		TyrannoRegister.registerEntity(id, entity);
 		return entity;
+	}
+
+	public static IStructurePieceType structurePeice(String id, IStructurePieceType structure) {
+		TyrannoRegister.registerStructurePiece(ModUtils.ID, id, structure);
+		return structure;
 	}
 
 	public static Structure<NoFeatureConfig> structure(String id, Structure<NoFeatureConfig> structure) {

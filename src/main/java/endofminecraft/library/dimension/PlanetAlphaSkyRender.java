@@ -6,7 +6,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import endofminecraft.library.util.ModUtils;
+import endofminecraft.content.ModUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.FogRenderer;
@@ -110,15 +110,20 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		WorldVertexBufferUploader.end(bufferbuilder);
 
 		// Planet Beta
-		f12 = 50.0F;
+		matrix.pushPose();
+		matrix.translate(0, 0, -100);
+		
+		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		renderer.textureManager.bind(PLANET_BETA_TEXTURE);
-		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(0.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(1.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.begin(4, DefaultVertexFormats.POSITION_TEX);
+		bufferbuilder.vertex(-140,  140, 0.0F).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(140,  140, 0.0F).uv(1.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(140, -140, 0.0F).uv(1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(-140, -140, 0.0F).uv(0.0F, 1.0F).endVertex();
 		bufferbuilder.end();
 		WorldVertexBufferUploader.end(bufferbuilder);
+		matrix.popPose();
+	
 
 		// Moon 1
 		f12 = 20.0F;
@@ -138,23 +143,23 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		bufferbuilder.end();
 		WorldVertexBufferUploader.end(bufferbuilder);
 
-		// Moon 2
-		f12 = 100.0F;
-		renderer.textureManager.bind(MOON_1_TEXTURES);
-		int moon2phase = world.getMoonPhase();
-		int moon2Y = moon2phase % 3;
-		int moon2X = moon2phase / 4 % 1;
-		float u3 = (float) (moon2Y + 0) / 4.0F;
-		float u4 = (float) (moon2X + 0) / 2.0F;
-		float v3 = (float) (moon2Y + 1) / 4.0F;
-		float v4 = (float) (moon2X + 1) / 2.0F;
-		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(v3, v4).endVertex();
-		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(u3, v4).endVertex();
-		bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(u3, u4).endVertex();
-		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(v3, u4).endVertex();
-		bufferbuilder.end();
-		WorldVertexBufferUploader.end(bufferbuilder);
+//		// Moon 2
+//		f12 = 100.0F;
+//		renderer.textureManager.bind(MOON_1_TEXTURES);
+//		int moon2phase = world.getMoonPhase();
+//		int moon2Y = moon2phase % 3;
+//		int moon2X = moon2phase / 4 % 1;
+//		float u3 = (float) (moon2Y + 0) / 4.0F;
+//		float u4 = (float) (moon2X + 0) / 2.0F;
+//		float v3 = (float) (moon2Y + 1) / 4.0F;
+//		float v4 = (float) (moon2X + 1) / 2.0F;
+//		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+//		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(v3, v4).endVertex();
+//		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(u3, v4).endVertex();
+//		bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(u3, u4).endVertex();
+//		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(v3, u4).endVertex();
+//		bufferbuilder.end();
+//		WorldVertexBufferUploader.end(bufferbuilder);
 
 		// Stars
 		RenderSystem.disableTexture();

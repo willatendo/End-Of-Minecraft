@@ -1,8 +1,8 @@
 package endofminecraft.content.server.init;
 
+import endofminecraft.content.ModRegistry;
+import endofminecraft.content.ModUtils;
 import endofminecraft.library.biome.ModBiomeMaker;
-import endofminecraft.library.util.ModRegistry;
-import endofminecraft.library.util.ModUtils;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;

@@ -1,6 +1,6 @@
 package endofminecraft.content.server.init;
 
-import endofminecraft.library.util.ModRegistry;
+import endofminecraft.content.ModRegistry;
 import net.minecraft.particles.BasicParticleType;
 
 public class ParticleInit {

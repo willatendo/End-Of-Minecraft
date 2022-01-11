@@ -2,8 +2,8 @@ package endofminecraft.library.block;
 
 import java.util.Random;
 
+import endofminecraft.content.ModRegistry;
 import endofminecraft.content.server.init.ParticleInit;
-import endofminecraft.library.util.ModRegistry;
 import endofminecraft.library.util.ModTeleporter;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;

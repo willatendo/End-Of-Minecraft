@@ -1,7 +1,7 @@
 package endofminecraft.content.server.init;
 
+import endofminecraft.content.ModRegistry;
 import endofminecraft.library.tileentity.AnomalyStoneTileEntity;
-import endofminecraft.library.util.ModRegistry;
 import net.minecraft.tileentity.TileEntityType;
 
 public class TileEntityInit {

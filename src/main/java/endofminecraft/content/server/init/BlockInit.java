@@ -1,8 +1,8 @@
 package endofminecraft.content.server.init;
 
+import endofminecraft.content.ModRegistry;
 import endofminecraft.library.block.AnomalyStoneBlock;
 import endofminecraft.library.block.PlanetAlphaPortalBlock;
-import endofminecraft.library.util.ModRegistry;
 import net.minecraft.block.Block;
 
 public class BlockInit {

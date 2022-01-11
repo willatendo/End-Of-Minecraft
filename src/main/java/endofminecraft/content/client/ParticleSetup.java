@@ -1,8 +1,8 @@
 package endofminecraft.content.client;
 
+import endofminecraft.content.ModUtils;
 import endofminecraft.content.server.init.ParticleInit;
 import endofminecraft.library.particle.ModParticle;
-import endofminecraft.library.util.ModUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;

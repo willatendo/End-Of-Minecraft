@@ -4,7 +4,7 @@ import java.util.OptionalInt;
 
 import com.google.common.collect.ImmutableList;
 
-import endofminecraft.library.util.ModRegistry;
+import endofminecraft.content.ModRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
