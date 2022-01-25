@@ -3,9 +3,9 @@ package endofminecraft.content;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class ModUtils {
 	public static final Logger LOGGER = LogManager.getLogger(ModUtils.ID);
@@ -17,19 +17,19 @@ public class ModUtils {
 		return new ResourceLocation(ID, location);
 	}
 
-	public static TranslationTextComponent tTC(String type, String key) {
-		return new TranslationTextComponent(type + "." + ID + "." + key);
+	public static TranslatableComponent tTC(String type, String key) {
+		return new TranslatableComponent(type + "." + ID + "." + key);
 	}
 
-	public static TranslationTextComponent cTC(String type, String key, TextFormatting colour) {
-		TranslationTextComponent text = tTC(type, key);
+	public static TranslatableComponent cTC(String type, String key, ChatFormatting colour) {
+		TranslatableComponent text = tTC(type, key);
 		text.withStyle(colour);
 		return text;
 	}
 
-	public static TranslationTextComponent gTC(String type, String key) {
-		TranslationTextComponent text = tTC(type, key);
-		text.withStyle(TextFormatting.GRAY);
+	public static TranslatableComponent gTC(String type, String key) {
+		TranslatableComponent text = tTC(type, key);
+		text.withStyle(ChatFormatting.GRAY);
 		return text;
 	}
 }

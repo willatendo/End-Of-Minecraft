@@ -2,7 +2,7 @@ package endofminecraft.content.client.model;
 
 import endofminecraft.content.ModUtils;
 import endofminecraft.library.tileentity.AnomalyStoneTileEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import tyrannotitanlib.library.tyrannomation.model.TyrannomatedTyrannomationModel;
 
 public class AnomalyStoneModel extends TyrannomatedTyrannomationModel<AnomalyStoneTileEntity> {

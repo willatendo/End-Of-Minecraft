@@ -5,19 +5,21 @@ import java.util.function.Supplier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.DimensionSettings;
-import net.minecraft.world.gen.NoiseChunkGenerator;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
+import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 
-public class EndWorldChunkGenerator extends NoiseChunkGenerator {
-	public static final Codec<EndWorldChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(BiomeProvider.CODEC.fieldOf("biome_source").forGetter(ChunkGenerator::getBiomeSource), Codec.LONG.fieldOf("seed").orElseGet(() -> EndWorldChunkGenerator.hackSeed).forGetter((obj) -> obj.seed), DimensionSettings.CODEC.fieldOf("settings").forGetter(EndWorldChunkGenerator::getDimensionSettings)).apply(instance, instance.stable(EndWorldChunkGenerator::new)));
+public class EndWorldChunkGenerator extends NoiseBasedChunkGenerator {
+	public static final Codec<EndWorldChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(BiomeSource.CODEC.fieldOf("biome_source").forGetter(ChunkGenerator::getBiomeSource), Codec.LONG.fieldOf("seed").orElseGet(() -> EndWorldChunkGenerator.hackSeed).forGetter((obj) -> obj.seed), NoiseGeneratorSettings.CODEC.fieldOf("settings").forGetter(EndWorldChunkGenerator::getDimensionSettings)).apply(instance, instance.stable(EndWorldChunkGenerator::new)));
 
 	private long seed;
 	public static long hackSeed;
 
-	public EndWorldChunkGenerator(BiomeProvider provider, long seed, Supplier<DimensionSettings> settingsIn) {
-		super(provider, seed, settingsIn);
+	public EndWorldChunkGenerator(Registry<NormalNoise.NoiseParameters> noises, BiomeSource provider, long seed, Supplier<NoiseGeneratorSettings> settingsIn) {
+		super(noises, provider, seed, settingsIn);
 		this.seed = seed;
 	}
 
@@ -28,10 +30,10 @@ public class EndWorldChunkGenerator extends NoiseChunkGenerator {
 
 	@Override
 	public ChunkGenerator withSeed(long seed) {
-		return new EndWorldChunkGenerator(biomeSource.withSeed(seed), seed, getDimensionSettings());
+		return new EndWorldChunkGenerator(this.noises, biomeSource.withSeed(seed), seed, getDimensionSettings());
 	}
 
-	private Supplier<DimensionSettings> getDimensionSettings() {
+	private Supplier<NoiseGeneratorSettings> getDimensionSettings() {
 		return settings;
 	}
 }

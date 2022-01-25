@@ -1,19 +1,19 @@
 package endofminecraft.library.effect;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.damagesource.DamageSource;
 
-public class IrradiatedEffect extends Effect {
+public class IrradiatedEffect extends MobEffect {
 	public IrradiatedEffect() {
-		super(EffectType.HARMFUL, 0x454545);
+		super(MobEffectCategory.HARMFUL, 0x454545);
 	}
 
 	@Override
 	public void applyEffectTick(LivingEntity entity, int tick) {
-		if (entity instanceof PlayerEntity && !((PlayerEntity) entity).isCreative() && !((PlayerEntity) entity).isSpectator()) {
+		if (entity instanceof Player && !((Player) entity).isCreative() && !((Player) entity).isSpectator()) {
 			entity.hurt(DamageSource.GENERIC, 2);
 		}
 	}
@@ -28,7 +28,7 @@ public class IrradiatedEffect extends Effect {
 		}
 	}
 
-	public static boolean canKill(PlayerEntity player) {
+	public static boolean canKill(Player player) {
 		if (player.isCreative() || player.isSpectator()) {
 			return false;
 		} else {

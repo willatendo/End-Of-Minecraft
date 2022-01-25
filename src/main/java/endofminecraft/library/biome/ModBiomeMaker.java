@@ -1,60 +1,51 @@
 package endofminecraft.library.biome;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeAmbience;
-import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.biome.MoodSoundAmbience;
-import net.minecraft.world.gen.GenerationStage.Decoration;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.biome.AmbientMoodSettings;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 
 public class ModBiomeMaker {
-	public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> DIRT = SurfaceBuilder.DEFAULT.configured(new SurfaceBuilderConfig(Blocks.DIRT.defaultBlockState(), Blocks.DIRT.defaultBlockState(), Blocks.DIRT.defaultBlockState()));
 
 	private static int calculateSkyColor(float tempature) {
 		float tempatureDivided = tempature / 3.0F;
-		tempatureDivided = MathHelper.clamp(tempatureDivided, -1.0F, 1.0F);
-		return MathHelper.hsvToRgb(0.62222224F - tempatureDivided * 0.05F, 0.5F + tempatureDivided * 0.1F, 1.0F);
+		tempatureDivided = Mth.clamp(tempatureDivided, -1.0F, 1.0F);
+		return Mth.hsvToRgb(0.62222224F - tempatureDivided * 0.05F, 0.5F + tempatureDivided * 0.1F, 1.0F);
 	}
 
 	public static Biome wasteland() {
-		MobSpawnInfo.Builder mobSpawnBuilder = new MobSpawnInfo.Builder();
+		MobSpawnSettings.Builder mobSpawnBuilder = new MobSpawnSettings.Builder();
 
-		BiomeGenerationSettings.Builder generationBuilder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(DIRT).addFeature(Decoration.VEGETAL_DECORATION, ModConfiguredFeatures.SINGLE_DEAD_TREE);
-		// generationBuilder.addStructureStart(Configured.CONFIGURED_ANOMALY_CAVE);
+		BiomeGenerationSettings.Builder generationBuilder = (new BiomeGenerationSettings.Builder()).addFeature(Decoration.VEGETAL_DECORATION, ModConfiguredFeatures.PLACED_DEAD_TREE);
 
-		DefaultBiomeFeatures.addDefaultCarvers(generationBuilder);
-		DefaultBiomeFeatures.addDesertLakes(generationBuilder);
-		DefaultBiomeFeatures.addDefaultMonsterRoom(generationBuilder);
-		DefaultBiomeFeatures.addDefaultUndergroundVariety(generationBuilder);
-		DefaultBiomeFeatures.addDefaultOres(generationBuilder);
-		DefaultBiomeFeatures.addDefaultSoftDisks(generationBuilder);
-		DefaultBiomeFeatures.addDesertVegetation(generationBuilder);
-		DefaultBiomeFeatures.addDefaultSprings(generationBuilder);
+		BiomeDefaultFeatures.addDefaultCarversAndLakes(generationBuilder);
+		BiomeDefaultFeatures.addDefaultMonsterRoom(generationBuilder);
+		BiomeDefaultFeatures.addDefaultUndergroundVariety(generationBuilder);
+		BiomeDefaultFeatures.addDefaultOres(generationBuilder);
+		BiomeDefaultFeatures.addDefaultSoftDisks(generationBuilder);
+		BiomeDefaultFeatures.addDesertVegetation(generationBuilder);
+		BiomeDefaultFeatures.addDefaultSprings(generationBuilder);
 
-		return (new Biome.Builder()).precipitation(Biome.RainType.NONE).biomeCategory(Biome.Category.PLAINS).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).specialEffects((new BiomeAmbience.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(2.0F)).ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawnBuilder.build()).generationSettings(generationBuilder.build()).build();
+		return (new Biome.BiomeBuilder()).precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.PLAINS).temperature(2.0F).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(2.0F)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawnBuilder.build()).generationSettings(generationBuilder.build()).build();
 	}
 
 	public static Biome scorchland() {
-		MobSpawnInfo.Builder mobSpawnBuilder = new MobSpawnInfo.Builder();
+		MobSpawnSettings.Builder mobSpawnBuilder = new MobSpawnSettings.Builder();
 
-		BiomeGenerationSettings.Builder generationBuilder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.DESERT);
+		BiomeGenerationSettings.Builder generationBuilder = (new BiomeGenerationSettings.Builder());
 
-		DefaultBiomeFeatures.addDefaultCarvers(generationBuilder);
-		DefaultBiomeFeatures.addDesertLakes(generationBuilder);
-		DefaultBiomeFeatures.addDefaultMonsterRoom(generationBuilder);
-		DefaultBiomeFeatures.addDefaultUndergroundVariety(generationBuilder);
-		DefaultBiomeFeatures.addDefaultOres(generationBuilder);
-		DefaultBiomeFeatures.addDefaultSoftDisks(generationBuilder);
-		DefaultBiomeFeatures.addDesertVegetation(generationBuilder);
-		DefaultBiomeFeatures.addDefaultSprings(generationBuilder);
+		BiomeDefaultFeatures.addDefaultCarversAndLakes(generationBuilder);
+		BiomeDefaultFeatures.addDefaultMonsterRoom(generationBuilder);
+		BiomeDefaultFeatures.addDefaultUndergroundVariety(generationBuilder);
+		BiomeDefaultFeatures.addDefaultOres(generationBuilder);
+		BiomeDefaultFeatures.addDefaultSoftDisks(generationBuilder);
+		BiomeDefaultFeatures.addDesertVegetation(generationBuilder);
+		BiomeDefaultFeatures.addDefaultSprings(generationBuilder);
 
-		return (new Biome.Builder()).precipitation(Biome.RainType.NONE).biomeCategory(Biome.Category.DESERT).depth(0.125F).scale(0.05F).temperature(4.0F).downfall(0.0F).specialEffects((new BiomeAmbience.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(2.0F)).ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawnBuilder.build()).generationSettings(generationBuilder.build()).build();
+		return (new Biome.BiomeBuilder()).precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(4.0F).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(calculateSkyColor(2.0F)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawnBuilder.build()).generationSettings(generationBuilder.build()).build();
 	}
 }

@@ -5,20 +5,20 @@ import java.util.Random;
 import endofminecraft.content.ModRegistry;
 import endofminecraft.content.server.init.ParticleInit;
 import endofminecraft.library.util.ModTeleporter;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -26,13 +26,13 @@ public class PlanetAlphaPortalBlock extends Block {
 	protected static final VoxelShape X_AXIS_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
 
 	public PlanetAlphaPortalBlock() {
-		super(AbstractBlock.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((light) -> {
+		super(BlockBehaviour.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((light) -> {
 			return 15;
 		}));
 	}
 
 	@Override
-	public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
+	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
 		if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
 			if (entity.isOnPortalCooldown()) {
 				entity.setPortalCooldown();
@@ -41,11 +41,11 @@ public class PlanetAlphaPortalBlock extends Block {
 					entity.portalEntrancePos = pos.immutable();
 				}
 
-				if (entity.level instanceof ServerWorld) {
-					ServerWorld serverworld = (ServerWorld) entity.level;
+				if (entity.level instanceof ServerLevel) {
+					ServerLevel serverworld = (ServerLevel) entity.level;
 					MinecraftServer minecraftserver = serverworld.getServer();
-					RegistryKey<World> registrykey = entity.level.dimension() == ModRegistry.PLANET_ALPHA_WORLD ? World.OVERWORLD : ModRegistry.PLANET_ALPHA_WORLD;
-					ServerWorld serverworly = minecraftserver.getLevel(registrykey);
+					ResourceKey<Level> registrykey = entity.level.dimension() == ModRegistry.PLANET_ALPHA_LEVEL ? Level.OVERWORLD : ModRegistry.PLANET_ALPHA_LEVEL;
+					ServerLevel serverworly = minecraftserver.getLevel(registrykey);
 					if (serverworly != null && !entity.isPassenger()) {
 						entity.setPortalCooldown();
 						entity.changeDimension(serverworly, new ModTeleporter(serverworly));
@@ -57,9 +57,9 @@ public class PlanetAlphaPortalBlock extends Block {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
 		if (rand.nextInt(100) == 0) {
-			world.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+			world.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		}
 
 		for (int i = 0; i < 4; ++i) {

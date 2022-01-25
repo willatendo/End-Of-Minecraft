@@ -7,23 +7,23 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import endofminecraft.content.server.init.BiomeInit;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.SharedConstants;
-import net.minecraft.util.Util;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryLookupCodec;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeRegistry;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.layer.Layer;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.SharedConstants;
+import net.minecraft.Util;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.RegistryLookupCodec;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.data.worldgen.biome.Biomes;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.newbiome.layer.Layer;
 
-public class EndWorldBiomeProvider extends BiomeProvider {
+public class EndWorldBiomeProvider extends BiomeSource {
 	public static final Codec<EndWorldBiomeProvider> CODEC = RecordCodecBuilder.create((instance) -> instance.group(Codec.LONG.fieldOf("seed").orElse(EndWorldChunkGenerator.hackSeed).forGetter((obj) -> obj.seed), RegistryLookupCodec.create(Registry.BIOME_REGISTRY).forGetter((obj) -> obj.registry)).apply(instance, instance.stable(EndWorldBiomeProvider::new)));
 
 	private final long seed;
 	private final Registry<Biome> registry;
 	private final Layer genBiomes;
-	private static final List<RegistryKey<Biome>> BIOMES = ImmutableList.of(BiomeInit.WASTELAND_KEY, BiomeInit.SCORCHLAND_KEY);
+	private static final List<ResourceKey<Biome>> BIOMES = ImmutableList.of(BiomeInit.WASTELAND_KEY, BiomeInit.SCORCHLAND_KEY);
 
 	public EndWorldBiomeProvider(long seed, Registry<Biome> registry) {
 		super(BIOMES.stream().map(define -> () -> registry.getOrThrow(define)));
@@ -33,12 +33,12 @@ public class EndWorldBiomeProvider extends BiomeProvider {
 	}
 
 	@Override
-	public BiomeProvider withSeed(long s) {
+	public BiomeSource withSeed(long s) {
 		return new EndWorldBiomeProvider(s, registry);
 	}
 
 	@Override
-	protected Codec<? extends BiomeProvider> codec() {
+	protected Codec<? extends BiomeSource> codec() {
 		return CODEC;
 	}
 
@@ -54,7 +54,7 @@ public class EndWorldBiomeProvider extends BiomeProvider {
 			if (SharedConstants.IS_RUNNING_IN_IDE) {
 				throw Util.pauseInIde(new IllegalStateException("Unknown biome id: " + i));
 			} else {
-				return registry.get(BiomeRegistry.byId(0));
+				return registry.get(Biomes.byId(0));
 			}
 		} else {
 			return biome;

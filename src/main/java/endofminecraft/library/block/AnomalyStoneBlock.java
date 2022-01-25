@@ -1,36 +1,34 @@
 package endofminecraft.library.block;
 
-import javax.annotation.Nullable;
-
 import endofminecraft.content.server.init.BlockInit;
-import endofminecraft.content.server.init.TileEntityInit;
 import endofminecraft.library.ModMaterials;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import endofminecraft.library.tileentity.AnomalyStoneTileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
 
-public class AnomalyStoneBlock extends Block {
+public class AnomalyStoneBlock extends Block implements EntityBlock {
 	public static final BooleanProperty ACTIVATED = BooleanProperty.create("activated");
 
 	public AnomalyStoneBlock() {
-		super(AbstractBlock.Properties.of(ModMaterials.ANOMALY_STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion().randomTicks());
+		super(BlockBehaviour.Properties.of(ModMaterials.ANOMALY_STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion().randomTicks());
 		this.registerDefaultState(this.stateDefinition.any().setValue(ACTIVATED, Boolean.valueOf(false)));
 	}
 
 	@Override
-	public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
 		if (state.getValue(ACTIVATED).booleanValue() == false) {
 			if (world.getBlockState(pos.south(5)) == Blocks.AIR.defaultBlockState()) {
 				world.setBlock(pos, state.setValue(ACTIVATED, Boolean.valueOf(true)), 3);
@@ -42,28 +40,17 @@ public class AnomalyStoneBlock extends Block {
 				world.setBlock(pos.south(5), Blocks.AIR.defaultBlockState(), 3);
 			}
 		}
-		return ActionResultType.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
 
 	@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-
-	@Nullable
-	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return TileEntityInit.ANONALY_STONE_TILE_ENTITY.create();
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 
 	@Override
-	public BlockRenderType getRenderShape(BlockState state) {
-		return BlockRenderType.ENTITYBLOCK_ANIMATED;
-	}
-
-	@Override
-	public void onRemove(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) {
+	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+		if (state.hasBlockEntity() && state.getBlock() != newState.getBlock()) {
 			world.removeBlockEntity(pos);
 		}
 	}
@@ -71,5 +58,10 @@ public class AnomalyStoneBlock extends Block {
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
 		builder.add(ACTIVATED);
+	}
+
+	@Override
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new AnomalyStoneTileEntity(pos, state);
 	}
 }

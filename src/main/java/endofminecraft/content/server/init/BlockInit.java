@@ -3,7 +3,7 @@ package endofminecraft.content.server.init;
 import endofminecraft.content.ModRegistry;
 import endofminecraft.library.block.AnomalyStoneBlock;
 import endofminecraft.library.block.PlanetAlphaPortalBlock;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 
 public class BlockInit {
 	public static final Block ANOMALY_STONE = ModRegistry.block("anomaly_stone", new AnomalyStoneBlock());

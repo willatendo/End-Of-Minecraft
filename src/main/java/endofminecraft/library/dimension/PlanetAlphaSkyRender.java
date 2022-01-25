@@ -2,26 +2,26 @@ package endofminecraft.library.dimension;
 
 import java.util.Random;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import endofminecraft.content.ModUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.WorldVertexBufferUploader;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
+import com.mojang.blaze3d.vertex.Tesselator;
+import net.minecraft.client.renderer.LevelRenderer;
+import com.mojang.blaze3d.vertex.BufferUploader;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.VertexBuffer;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import com.mojang.math.Matrix4f;
+import net.minecraft.world.phys.Vec3;
+import com.mojang.math.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ISkyRenderHandler;
@@ -33,26 +33,26 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 	// ModUtils.rL("textures/environment/planet_alpha_moon_1_phases.png");
 	private static final ResourceLocation PLANET_BETA_TEXTURE = ModUtils.rL("textures/environment/planet_beta.png");
 	private VertexBuffer starVBO;
-	private final VertexFormat vertexBufferFormat = DefaultVertexFormats.POSITION;
+	private final VertexFormat vertexBufferFormat = DefaultVertexFormat.POSITION;
 
 	public PlanetAlphaSkyRender() {
 		generateStars();
 	}
 
 	@Override
-	public void render(int ticks, float partialTicks, MatrixStack matrix, ClientWorld world, Minecraft mc) {
-		WorldRenderer renderer = mc.levelRenderer;
+	public void render(int ticks, float partialTicks, PoseStack matrix, ClientLevel world, Minecraft mc) {
+		LevelRenderer renderer = mc.levelRenderer;
 
 		RenderSystem.disableTexture();
-		Vector3d skycol = world.getSkyColor(mc.gameRenderer.getMainCamera().getBlockPosition(), partialTicks);
+		Vec3 skycol = world.getSkyColor(mc.gameRenderer.getMainCamera().getPosition(), partialTicks);
 		float sRed = (float) skycol.x;
 		float sGreen = (float) skycol.y;
 		float sBlue = (float) skycol.z;
 		FogRenderer.levelFogColor();
-		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
+		BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
 		RenderSystem.depthMask(false);
-		RenderSystem.enableFog();
-		RenderSystem.color3f(sRed, sGreen, sBlue);
+//		RenderSystem.();
+		RenderSystem.setShaderColor(sRed, sGreen, sBlue, 1.0F);
 		renderer.skyBuffer.bind();
 		this.vertexBufferFormat.setupBufferState(0L);
 		renderer.skyBuffer.draw(matrix.last().pose(), 7);
@@ -68,25 +68,25 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 			RenderSystem.shadeModel(7425);
 			matrix.pushPose();
 			matrix.mulPose(Vector3f.XP.rotationDegrees(90.0F));
-			float f3 = MathHelper.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
+			float f3 = Mth.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
 			matrix.mulPose(Vector3f.ZP.rotationDegrees(f3));
 			matrix.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
 			float ssRed = setcol[0];
 			float ssGreen = setcol[1];
 			float ssBlue = setcol[2];
 			Matrix4f matrix4f = matrix.last().pose();
-			bufferbuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
+			bufferbuilder.begin(6, DefaultVertexFormat.POSITION_COLOR);
 			bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(ssRed, ssGreen, ssBlue, setcol[3]).endVertex();
 
 			for (int j = 0; j <= 16; ++j) {
 				float f7 = (float) j * ((float) Math.PI * 2F) / 16.0F;
-				float f8 = MathHelper.sin(f7);
-				float f9 = MathHelper.cos(f7);
+				float f8 = Mth.sin(f7);
+				float f9 = Mth.cos(f7);
 				bufferbuilder.vertex(matrix4f, f8 * 120.0F, f9 * 120.0F, -f9 * 40.0F * setcol[3]).color(setcol[0], setcol[1], setcol[2], 0.0F).endVertex();
 			}
 
 			bufferbuilder.end();
-			WorldVertexBufferUploader.end(bufferbuilder);
+			BufferUploader.end(bufferbuilder);
 			matrix.popPose();
 			RenderSystem.shadeModel(7424);
 		}
@@ -101,29 +101,28 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		// Suns
 		float f12 = 30.0F;
 		renderer.textureManager.bind(SUN_TEXTURES);
-		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
 		bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
 		bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
 		bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
 		bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
 		bufferbuilder.end();
-		WorldVertexBufferUploader.end(bufferbuilder);
+		BufferUploader.end(bufferbuilder);
 
 		// Planet Beta
 		matrix.pushPose();
 		matrix.translate(0, 0, -100);
-		
+
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		renderer.textureManager.bind(PLANET_BETA_TEXTURE);
-		bufferbuilder.begin(4, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.vertex(-140,  140, 0.0F).uv(0.0F, 0.0F).endVertex();
-		bufferbuilder.vertex(140,  140, 0.0F).uv(1.0F, 0.0F).endVertex();
+		bufferbuilder.begin(4, DefaultVertexFormat.POSITION_TEX);
+		bufferbuilder.vertex(-140, 140, 0.0F).uv(0.0F, 0.0F).endVertex();
+		bufferbuilder.vertex(140, 140, 0.0F).uv(1.0F, 0.0F).endVertex();
 		bufferbuilder.vertex(140, -140, 0.0F).uv(1.0F, 1.0F).endVertex();
 		bufferbuilder.vertex(-140, -140, 0.0F).uv(0.0F, 1.0F).endVertex();
 		bufferbuilder.end();
-		WorldVertexBufferUploader.end(bufferbuilder);
+		BufferUploader.end(bufferbuilder);
 		matrix.popPose();
-	
 
 		// Moon 1
 		f12 = 20.0F;
@@ -135,13 +134,13 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		float u2 = (float) (moon1X + 0) / 2.0F;
 		float v1 = (float) (moon1Y + 1) / 4.0F;
 		float v2 = (float) (moon1X + 1) / 2.0F;
-		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
 		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(v1, v2).endVertex();
 		bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(u1, v2).endVertex();
 		bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(u1, u2).endVertex();
 		bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(v1, u2).endVertex();
 		bufferbuilder.end();
-		WorldVertexBufferUploader.end(bufferbuilder);
+		BufferUploader.end(bufferbuilder);
 
 //		// Moon 2
 //		f12 = 100.0F;
@@ -199,7 +198,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 	}
 
 	private void generateStars() {
-		Tessellator tessellator = Tessellator.getInstance();
+		Tesselator tessellator = Tesselator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
 		if (this.starVBO != null) {
 			this.starVBO.close();
@@ -208,7 +207,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 		this.starVBO = new VertexBuffer(this.vertexBufferFormat);
 
 		Random random = new Random(10842L);
-		bufferbuilder.begin(7, DefaultVertexFormats.POSITION);
+		bufferbuilder.begin(7, DefaultVertexFormat.POSITION);
 
 		for (int i = 0; i < 1500; ++i) {
 			double x = (double) (random.nextFloat() * 2.0F - 1.0F);
@@ -253,7 +252,7 @@ public class PlanetAlphaSkyRender implements ISkyRenderHandler {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public float getStarBrightness(ClientWorld world, float par1) {
+	public float getStarBrightness(ClientLevel world, float par1) {
 		return world.getStarBrightness(par1);
 	}
 }
