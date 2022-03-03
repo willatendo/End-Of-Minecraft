@@ -1,10 +1,3 @@
 {
-	//ITEMS
-	"item.endofminecraft.radiation_helmet": "Radiation Helmet",
-	"item.endofminecraft.radiation_chestplate": "Radiation Chestplate",
-	"item.endofminecraft.radiation_leggings": "Radiation Leggings",
-	"item.endofminecraft.radiation_boots": "Radiation Boots",
-
-	//WORLD TYPES
-	"generator.endofminecraft.end_world_type": "End of the World"
+	"generator.endofminecraft.end_of_the_world": "End of The World"
 }

@@ -61,7 +61,7 @@ dependencies {
     
 	//Library
 	implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:1.18.1-1.1.0.70")
-    implementation fg.deobf("curse.maven:tyrannotitan-library-forge-425570:3621671")
+    implementation fg.deobf("curse.maven:tyrannotitan-library-forge-425570:3641673")
 	
 	//Mixins
 	annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'

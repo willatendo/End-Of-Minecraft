@@ -5,7 +5,7 @@ license="Custom"
 
 [[mods]]
 modId="endofminecraft"
-version="v1.0.0"
+version="1.0.0"
 displayName="End of Minecraft"
 # updateJSONURL=""
 # displayURL=""
@@ -25,7 +25,7 @@ A mod that makes the world of Minecraft a nuclear wasteland.
 [[dependencies.endofminecraft]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.18.1,1.19)"
     ordering="NONE"
     side="BOTH"
 
