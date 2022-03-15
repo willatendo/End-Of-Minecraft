@@ -3,6 +3,7 @@ package endofminecraft.server.world;
 import com.mojang.serialization.Lifecycle;
 
 import endofminecraft.server.ModRegistry;
+import net.minecraft.core.Holder;
 import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraft.world.level.levelgen.WorldGenSettings;
+import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraftforge.common.world.ForgeWorldPreset;
 
@@ -25,9 +27,8 @@ public class EndWorldPreset extends ForgeWorldPreset {
 		Registry<Biome> biome = registryAccess.registryOrThrow(Registry.BIOME_REGISTRY);
 		Registry<NoiseGeneratorSettings> dimensionSettings = registryAccess.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY);
 		Registry<NormalNoise.NoiseParameters> noise = registryAccess.registryOrThrow(Registry.NOISE_REGISTRY);
-		return new EndChunkGenerator(noise, ModRegistry.END_OF_THE_WORLD_NOISE.biomeSource(biome), seed, () -> {
-			return dimensionSettings.getOrThrow(ModRegistry.END_OF_THE_WORLD_SETTINGS);
-		});
+		Registry<StructureSet> structures = registryAccess.registryOrThrow(Registry.STRUCTURE_SET_REGISTRY);
+		return new EndChunkGenerator(structures, noise, ModRegistry.END_OF_THE_WORLD_NOISE.biomeSource(biome), seed, Holder.direct(dimensionSettings.getOrThrow(ModRegistry.END_OF_THE_WORLD_SETTINGS)));
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class EndWorldPreset extends ForgeWorldPreset {
 	}
 
 	public MappedRegistry<LevelStem> planetAlpha(Registry<DimensionType> dimensionType, Registry<Biome> biome, Registry<NoiseGeneratorSettings> dimensionSettings, long seed) {
-		MappedRegistry<LevelStem> simpleregistry = new MappedRegistry<>(Registry.LEVEL_STEM_REGISTRY, Lifecycle.stable());
+		MappedRegistry<LevelStem> simpleregistry = new MappedRegistry<>(Registry.LEVEL_STEM_REGISTRY, Lifecycle.stable(), null);
 		return simpleregistry;
 	}
 }

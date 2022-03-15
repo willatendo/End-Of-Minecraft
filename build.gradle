@@ -14,7 +14,6 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
-apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
 version = '1.0.0'
 group = 'endofminecraft'
@@ -23,7 +22,7 @@ archivesBaseName = 'endofminecraft'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
 	
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     
@@ -57,11 +56,10 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.59'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.0.15'
     
 	//Library
-	implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:1.18.1-1.1.0.70")
-    implementation fg.deobf("curse.maven:tyrannotitan-library-forge-425570:3641673")
+    implementation fg.deobf("curse.maven:tyrannotitan-library-forge-425570:3672307")
 	
 	//Mixins
 	annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'

@@ -21,7 +21,8 @@ public class EndOfMinecraftMod {
 		 * wheat seed, birch sapling and beetroot seeds, or a spruce sapling and
 		 * potatoes.
 		 * 
-		 * When it rains, the player can become irradiated (slowly kills the player and prevents regeneration of heath)
+		 * When it rains, the player can become irradiated (slowly kills the player and
+		 * prevents regeneration of heath)
 		 * 
 		 * Entities: husks, irradiated villagers, and red, blue, and green beetles.
 		 * 
@@ -38,7 +39,7 @@ public class EndOfMinecraftMod {
 
 		bus.addListener(this::setup);
 
-		ModRegistry.init();
+		ModRegistry.init(bus);
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[39,)"
+loaderVersion="[40,)"
 license="Custom"
 # issueTrackerURL=""
 
@@ -18,7 +18,7 @@ A mod that makes the world of Minecraft a nuclear wasteland.
 [[dependencies.endofminecraft]]
     modId="forge"
     mandatory=true
-    versionRange="[39,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 
@@ -32,6 +32,6 @@ A mod that makes the world of Minecraft a nuclear wasteland.
 [[dependencies.endofminecraft]]
     modId="tyrannotitanlib"
     mandatory=true
-    versionRange="[3.1.0,)"
+    versionRange="[4.1.2,)"
     ordering="NONE"
     side="BOTH"
