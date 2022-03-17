@@ -1,4 +1,4 @@
-package endofminecraft.server.world;
+package endofminecraft.server.world.preset;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

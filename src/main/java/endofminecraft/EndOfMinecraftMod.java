@@ -1,6 +1,6 @@
 package endofminecraft;
 
-import endofminecraft.server.ModRegistry;
+import endofminecraft.server.EndRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -39,12 +39,12 @@ public class EndOfMinecraftMod {
 
 		bus.addListener(this::setup);
 
-		ModRegistry.init(bus);
+		EndRegistry.init(bus);
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			ModRegistry.enqueue();
+			EndRegistry.register();
 		});
 	}
 }

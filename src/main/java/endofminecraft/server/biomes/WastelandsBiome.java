@@ -2,7 +2,7 @@ package endofminecraft.server.biomes;
 
 import static endofminecraft.EndOfMinecraftMod.UTILS;
 
-import endofminecraft.server.ModRegistry;
+import endofminecraft.server.EndRegistry;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -27,7 +27,7 @@ public class WastelandsBiome extends TyrannoBiome {
 		BiomeDefaultFeatures.addDefaultOres(GENERATION);
 		BiomeDefaultFeatures.addDesertVegetation(GENERATION);
 		BiomeDefaultFeatures.addDefaultMushrooms(GENERATION);
-		GENERATION.addFeature(Decoration.VEGETAL_DECORATION, ModRegistry.PLACED_DEAD_TREE);
+		GENERATION.addFeature(Decoration.VEGETAL_DECORATION, EndRegistry.PLACED_DEAD_TREE);
 	}
 
 	@Override

@@ -38,12 +38,34 @@ minecraft {
                 }
             }
         }
+			
+		data {
+			workingDirectory project.file('run')
+			args '--mod', 'endofminecraft', '--all',
+					'--existing', file('src/main/resources').toString(),
+					'--existing', file('src/generated/resources').toString(),
+					'--output', file('src/generated/resources/')
+					
+			mods {
+				fossillegacy {
+					sourceSets.main
+				}
+			}
+		}
     }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
 }
 
 mixin {
     add sourceSets.main, 'endofminecraft.mixins.refmap.json'
     config 'endofminecraft.mixins.json'
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
 }
 
 repositories {

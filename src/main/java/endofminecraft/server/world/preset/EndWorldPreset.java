@@ -1,8 +1,8 @@
-package endofminecraft.server.world;
+package endofminecraft.server.world.preset;
 
 import com.mojang.serialization.Lifecycle;
 
-import endofminecraft.server.ModRegistry;
+import endofminecraft.server.EndRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
@@ -28,7 +28,7 @@ public class EndWorldPreset extends ForgeWorldPreset {
 		Registry<NoiseGeneratorSettings> dimensionSettings = registryAccess.registryOrThrow(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY);
 		Registry<NormalNoise.NoiseParameters> noise = registryAccess.registryOrThrow(Registry.NOISE_REGISTRY);
 		Registry<StructureSet> structures = registryAccess.registryOrThrow(Registry.STRUCTURE_SET_REGISTRY);
-		return new EndChunkGenerator(structures, noise, ModRegistry.END_OF_THE_WORLD_NOISE.biomeSource(biome), seed, Holder.direct(dimensionSettings.getOrThrow(ModRegistry.END_OF_THE_WORLD_SETTINGS)));
+		return new EndChunkGenerator(structures, noise, EndRegistry.END_OF_THE_WORLD_NOISE.biomeSource(biome), seed, Holder.direct(dimensionSettings.getOrThrow(EndRegistry.END_OF_THE_WORLD_SETTINGS)));
 	}
 
 	@Override
