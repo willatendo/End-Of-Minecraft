@@ -1,7 +1,12 @@
 package endofminecraft;
 
+import endofminecraft.client.EndItemProperties;
 import endofminecraft.server.EndRegistry;
+import endofminecraft.server.radiation.RadiationCommand;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import tyrannotitanlib.core.content.UtilitiesRegistry;
@@ -30,19 +35,32 @@ public class EndOfMinecraftMod {
 		 * 
 		 * Structures: Irradiated Village, Anomaly Cave Bunker
 		 * 
-		 * Items: Radiation Suit
+		 * Items: Radiation Suit, Geiger Counter
 		 * 
 		 * Blocks: Anomaly Stone, Planet Alpha Portal,
 		 */
 
 		var bus = FMLJavaModLoadingContext.get().getModEventBus();
+		var forge = MinecraftForge.EVENT_BUS;
 
-		bus.addListener(this::setup);
+		forge.addListener(this::commandSetup);
+		bus.addListener(this::clientSetup);
+		bus.addListener(this::commonSetup);
 
 		EndRegistry.init(bus);
+
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	private void setup(final FMLCommonSetupEvent event) {
+	private void commandSetup(RegisterCommandsEvent event) {
+		RadiationCommand.register(event.getDispatcher());
+	}
+
+	private void clientSetup(FMLClientSetupEvent event) {
+		EndItemProperties.registerItemProperties();
+	}
+
+	private void commonSetup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			EndRegistry.register();
 		});

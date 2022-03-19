@@ -1,7 +1,9 @@
 {
   "biome.endofminecraft.scorchland": "Scorchland",
   "biome.endofminecraft.wastelands": "Wastelands",
+  "command.endofminecraft.radiation.success": "Successfully set the radiation level of the world to %s",
   "generator.endofminecraft.end_of_the_world": "End of Minecraft",
+  "item.endofminecraft.geiger_counter": "Geiger Counter",
   "item.endofminecraft.radiation_suit_boots": "Radiation Suit Boots",
   "item.endofminecraft.radiation_suit_chestplate": "Radiation Suit Chestplate",
   "item.endofminecraft.radiation_suit_helmet": "Radiation Suit Helmet",

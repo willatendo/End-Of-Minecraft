@@ -15,6 +15,7 @@ public class EndLangProvider extends LanguageProvider {
 
 	@Override
 	protected void addTranslations() {
+		this.add(EndRegistry.GEIGER_COUNTER.get(), "Geiger Counter");
 		this.add(EndRegistry.RADIATION_SUIT_BOOTS.get(), "Radiation Suit Boots");
 		this.add(EndRegistry.RADIATION_SUIT_CHESTPLATE.get(), "Radiation Suit Chestplate");
 		this.add(EndRegistry.RADIATION_SUIT_HELMET.get(), "Radiation Suit Helmet");
@@ -22,6 +23,7 @@ public class EndLangProvider extends LanguageProvider {
 		this.add(EndRegistry.SCORCHLAND.getSecond().get(), "Scorchland");
 		this.add(EndRegistry.WASTELANDS.getSecond().get(), "Wastelands");
 		this.add(EndRegistry.END_OF_THE_WORLD.get(), "End of Minecraft");
+		this.add("command.endofminecraft.radiation.success", "Successfully set the radiation level of the world to %s");
 	}
 
 	public void add(Biome biome, String name) {

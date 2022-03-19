@@ -21,8 +21,20 @@ public class IrradiatedEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplification) {
-		if (this == MobEffects.WITHER) {
-			entity.hurt(EndRegistry.IRRADIATION, amplification * 0.5F);
+		float damage = amplification * 0.5F;
+		if (entity.getActiveEffects().contains(MobEffects.REGENERATION)) {
+			damage = amplification * 1.0F;
+		}
+		entity.hurt(EndRegistry.IRRADIATION, damage);
+	}
+
+	@Override
+	public boolean isDurationEffectTick(int duration, int amplification) {
+		int i = 40 >> amplification;
+		if (i > 0) {
+			return duration % i == 0;
+		} else {
+			return true;
 		}
 	}
 }

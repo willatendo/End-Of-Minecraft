@@ -56,12 +56,15 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.world.ForgeWorldPreset;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import tyrannotitanlib.library.item.TyrannoArmourMaterial;
 import tyrannotitanlib.tyranniworld.TyrannoBiome;
 
+@EventBusSubscriber(modid = EndOfMinecraftMod.ID, bus = Bus.MOD)
 public class EndRegistry {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EndOfMinecraftMod.ID);
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, EndOfMinecraftMod.ID);
@@ -73,13 +76,15 @@ public class EndRegistry {
 		return Ingredient.of(Items.IRON_INGOT);
 	});
 
+	public static final RegistryObject<Item> GEIGER_COUNTER = ITEMS.register("geiger_counter", () -> new Item(new Properties().tab(CreativeModeTab.TAB_MISC)));
+
 	public static final RegistryObject<Item> RADIATION_SUIT_HELMET = ITEMS.register("radiation_suit_helmet", () -> new ArmorItem(RADIATION_SUIT, EquipmentSlot.HEAD, new Properties().tab(CreativeModeTab.TAB_MISC)));
 	public static final RegistryObject<Item> RADIATION_SUIT_CHESTPLATE = ITEMS.register("radiation_suit_chestplate", () -> new ArmorItem(RADIATION_SUIT, EquipmentSlot.CHEST, new Properties().tab(CreativeModeTab.TAB_MISC)));
 	public static final RegistryObject<Item> RADIATION_SUIT_LEGGINGS = ITEMS.register("radiation_suit_leggings", () -> new ArmorItem(RADIATION_SUIT, EquipmentSlot.LEGS, new Properties().tab(CreativeModeTab.TAB_MISC)));
 	public static final RegistryObject<Item> RADIATION_SUIT_BOOTS = ITEMS.register("radiation_suit_boots", () -> new ArmorItem(RADIATION_SUIT, EquipmentSlot.FEET, new Properties().tab(CreativeModeTab.TAB_MISC)));
 
 	// Damage
-	public static final DamageSource IRRADIATION = (new DamageSource("irradiation")).bypassArmor().setMagic();
+	public static final DamageSource IRRADIATION = (new DamageSource("irradiation")).bypassArmor();
 
 	// Mob Effects
 	public static final RegistryObject<MobEffect> IRRADIATED = MOB_EFFECTS.register("irradiated", () -> new IrradiatedEffect());
