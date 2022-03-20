@@ -4,6 +4,7 @@ import endofminecraft.EndOfMinecraftMod;
 import endofminecraft.server.EndRegistry;
 import net.minecraft.Util;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.common.world.ForgeWorldPreset;
@@ -23,7 +24,12 @@ public class EndLangProvider extends LanguageProvider {
 		this.add(EndRegistry.SCORCHLAND.getSecond().get(), "Scorchland");
 		this.add(EndRegistry.WASTELANDS.getSecond().get(), "Wastelands");
 		this.add(EndRegistry.END_OF_THE_WORLD.get(), "End of Minecraft");
+		this.add(EndRegistry.IRRADIATED.get(), "Irradiated");
 		this.add("command.endofminecraft.radiation.success", "Successfully set the radiation level of the world to %s");
+	}
+
+	public void add(MobEffect mobEffect, String name) {
+		this.add(Util.makeDescriptionId("effect", mobEffect.getRegistryName()), name);
 	}
 
 	public void add(Biome biome, String name) {

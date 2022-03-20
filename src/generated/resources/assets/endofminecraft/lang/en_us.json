@@ -2,6 +2,7 @@
   "biome.endofminecraft.scorchland": "Scorchland",
   "biome.endofminecraft.wastelands": "Wastelands",
   "command.endofminecraft.radiation.success": "Successfully set the radiation level of the world to %s",
+  "effect.endofminecraft.irradiated": "Irradiated",
   "generator.endofminecraft.end_of_the_world": "End of Minecraft",
   "item.endofminecraft.geiger_counter": "Geiger Counter",
   "item.endofminecraft.radiation_suit_boots": "Radiation Suit Boots",

@@ -1,0 +1,12 @@
+{
+	"type": "endofminecraft:planet_alpha",
+	"generator": {
+		"type": "minecraft:noise",
+		"seed": 0,
+		"settings": "minecraft:overworld",
+		"biome_source": {
+			"type": "minecraft:multi_noise",
+			"preset": "minecraft:overworld"
+		}
+	}
+}

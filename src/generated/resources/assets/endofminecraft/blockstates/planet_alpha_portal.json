@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "endofminecraft:block/planet_alpha_portal_ns"
+    },
+    "axis=z": {
+      "model": "endofminecraft:block/planet_alpha_portal_ew"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package endofminecraft.data;
 
 import endofminecraft.EndOfMinecraftMod;
+import endofminecraft.data.client.EndBlockStateProvider;
 import endofminecraft.data.client.EndItemProvider;
 import endofminecraft.data.client.EndLangProvider;
 import net.minecraft.data.DataGenerator;
@@ -16,6 +17,7 @@ public class EndDataGen {
 	public static void gatherData(GatherDataEvent event) {
 		DataGenerator dataGenerator = event.getGenerator();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		dataGenerator.addProvider(new EndBlockStateProvider(dataGenerator, existingFileHelper));
 		dataGenerator.addProvider(new EndItemProvider(dataGenerator, existingFileHelper));
 		dataGenerator.addProvider(new EndLangProvider(dataGenerator));
 	}

@@ -33,7 +33,7 @@ public class EndOfMinecraftMod {
 		 * 
 		 * End Goal: Reach Planet Alpha
 		 * 
-		 * Structures: Irradiated Village, Anomaly Cave Bunker
+		 * Structures: Irradiated Village, Anomaly Cave, Bunker
 		 * 
 		 * Items: Radiation Suit, Geiger Counter
 		 * 

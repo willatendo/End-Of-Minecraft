@@ -1,0 +1,28 @@
+{
+  "textures": {
+    "particle": "endofminecraft:block/planet_alpha_portal",
+    "portal": "endofminecraft:block/planet_alpha_portal"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        6
+      ],
+      "to": [
+        16,
+        16,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#portal"
+        },
+        "south": {
+          "texture": "#portal"
+        }
+      }
+    }
+  ]
+}
