@@ -139,7 +139,7 @@ public class EndRegistry {
 	public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> DEAD_TREE = FeatureUtils.register(feature("dead_tree"), Feature.TREE, createDeadTree().build());
 	public static final Holder<PlacedFeature> CHECKED_DEAD_TREE = PlacementUtils.register(feature("checked_dead_tree"), EndRegistry.DEAD_TREE, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING));
 	public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> WASTELANDS_TREES = FeatureUtils.register(feature("wastelands_trees"), Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(), EndRegistry.CHECKED_DEAD_TREE));
-	public static final Holder<PlacedFeature> PLACED_DEAD_TREE = PlacementUtils.register(feature("placed_dead_tree"), EndRegistry.WASTELANDS_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1)));
+	public static final Holder<PlacedFeature> PLACED_DEAD_TREE = PlacementUtils.register(feature("placed_dead_tree"), EndRegistry.WASTELANDS_TREES, VegetationPlacements.treePlacement(PlacementUtils.countExtra(10, 0.1F, 1)));
 
 	private static TreeConfiguration.TreeConfigurationBuilder createDeadTree() {
 		return (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.OAK_LOG), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(Blocks.AIR), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines();

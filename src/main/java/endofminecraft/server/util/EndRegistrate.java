@@ -13,6 +13,7 @@ public class EndRegistrate extends AbstractRegistrate<EndRegistrate> {
 
 		this.addDataGenerator(ProviderType.LANG, provider -> provider.add(EndRegistry.END_TAB, "End of Minecraft"));
 		this.addDataGenerator(ProviderType.LANG, provider -> provider.add(EndRegistry.IRRADIATED.get(), "Irradiated"));
+		this.addDataGenerator(ProviderType.LANG, provider -> provider.add("generator.endofminecraft.end_of_the_world", "End of Minecraft"));
 		this.addDataGenerator(ProviderType.LANG, provider -> provider.add("command.endofminecraft.radiation.success", "Successfully set the radiation level of the world to %s"));
 	}
 
