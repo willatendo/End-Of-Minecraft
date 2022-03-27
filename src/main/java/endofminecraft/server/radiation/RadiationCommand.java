@@ -26,7 +26,7 @@ public class RadiationCommand implements Command<CommandSourceStack> {
 
 		RadiationHandler.setRadiationLevel(level);
 
-		context.getSource().sendSuccess(UTILS.idBoundArgsTranslationText("command", "radiation.success", level + ""), true);
+		context.getSource().sendSuccess(UTILS.boundArgsTrans("command", "radiation.success", level + ""), true);
 
 		return 0;
 	}

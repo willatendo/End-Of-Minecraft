@@ -29,10 +29,6 @@ public class WastelandsBiome extends TyrannoBiome {
 
 	@Override
 	public ResourceLocation name() {
-		return UTILS.resource("wastelands");
-	}
-
-	@Override
-	public void setupSettings() {
+		return UTILS.mod("wastelands");
 	}
 }

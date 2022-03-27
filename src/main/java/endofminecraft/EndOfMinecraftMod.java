@@ -1,20 +1,26 @@
 package endofminecraft;
 
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
+
 import endofminecraft.client.EndItemProperties;
+import endofminecraft.data.client.EndItems;
 import endofminecraft.server.EndRegistry;
 import endofminecraft.server.radiation.RadiationCommand;
+import endofminecraft.server.util.EndRegistrate;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import tyrannotitanlib.core.content.UtilitiesRegistry;
 
 @Mod(EndOfMinecraftMod.ID)
 public class EndOfMinecraftMod {
 	public static final String ID = "endofminecraft";
 	public static final UtilitiesRegistry UTILS = new UtilitiesRegistry(ID);
+	public static final NonNullSupplier<EndRegistrate> CENTRAL_REGISTRATE = EndRegistrate.lazy(ID);
 
 	public EndOfMinecraftMod() {
 		/*
@@ -46,6 +52,7 @@ public class EndOfMinecraftMod {
 		forge.addListener(this::commandSetup);
 		bus.addListener(this::clientSetup);
 		bus.addListener(this::commonSetup);
+		bus.addListener(this::dataSetup);
 
 		EndRegistry.init(bus);
 
@@ -54,6 +61,8 @@ public class EndOfMinecraftMod {
 
 	private void commandSetup(RegisterCommandsEvent event) {
 		RadiationCommand.register(event.getDispatcher());
+
+		EndRegistry.END_TAB.setItemIcon(EndRegistry.GEIGER_COUNTER.asStack());
 	}
 
 	private void clientSetup(FMLClientSetupEvent event) {
@@ -64,5 +73,11 @@ public class EndOfMinecraftMod {
 		event.enqueueWork(() -> {
 			EndRegistry.register();
 		});
+	}
+
+	private void dataSetup(GatherDataEvent event) {
+		var dataGenerator = event.getGenerator();
+		var existingFileHelper = event.getExistingFileHelper();
+		dataGenerator.addProvider(new EndItems(dataGenerator, existingFileHelper));
 	}
 }

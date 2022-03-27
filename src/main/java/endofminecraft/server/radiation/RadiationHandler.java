@@ -5,6 +5,7 @@ import java.util.Random;
 import endofminecraft.EndOfMinecraftMod;
 import endofminecraft.server.EndRegistry;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,11 +40,18 @@ public class RadiationHandler {
 
 	@SubscribeEvent
 	public static void playerTick(PlayerTickEvent event) {
-		if (RadiationHandler.isRadiationDeadly()) {
-			var player = event.player;
-			var level = player.level;
-			if (level.canSeeSky(player.blockPosition())) {
-				player.addEffect(new MobEffectInstance(EndRegistry.IRRADIATED.get(), 30));
+		var player = event.player;
+		var level = player.level;
+		if (level.dimension() == Level.OVERWORLD) {
+			if (RadiationHandler.isRadiationDeadly()) {
+				if (level.canSeeSky(player.blockPosition())) {
+					player.addEffect(new MobEffectInstance(EndRegistry.IRRADIATED.get(), 30));
+
+					int noiseChance = new Random().nextInt(15);
+					if (noiseChance == 14) {
+//						level.playSound(player, player.blockPosition(), EndRegistry.RADIATION_FUZZ.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
+					}
+				}
 			}
 		}
 	}

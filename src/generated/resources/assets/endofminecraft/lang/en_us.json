@@ -1,12 +1,11 @@
 {
-  "biome.endofminecraft.scorchland": "Scorchland",
-  "biome.endofminecraft.wastelands": "Wastelands",
+  "block.endofminecraft.planet_alpha_portal": "Planet Alpha Portal",
   "command.endofminecraft.radiation.success": "Successfully set the radiation level of the world to %s",
   "effect.endofminecraft.irradiated": "Irradiated",
-  "generator.endofminecraft.end_of_the_world": "End of Minecraft",
   "item.endofminecraft.geiger_counter": "Geiger Counter",
   "item.endofminecraft.radiation_suit_boots": "Radiation Suit Boots",
   "item.endofminecraft.radiation_suit_chestplate": "Radiation Suit Chestplate",
   "item.endofminecraft.radiation_suit_helmet": "Radiation Suit Helmet",
-  "item.endofminecraft.radiation_suit_leggings": "Radiation Suit Leggings"
+  "item.endofminecraft.radiation_suit_leggings": "Radiation Suit Leggings",
+  "itemGroup.endofminecraft.end_tab": "End of Minecraft"
 }

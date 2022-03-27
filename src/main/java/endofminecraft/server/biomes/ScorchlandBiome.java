@@ -29,10 +29,6 @@ public class ScorchlandBiome extends TyrannoBiome {
 
 	@Override
 	public ResourceLocation name() {
-		return UTILS.resource("scorchland");
-	}
-
-	@Override
-	public void setupSettings() {
+		return UTILS.mod("scorchland");
 	}
 }
