@@ -3,10 +3,12 @@ package endofminecraft;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 
 import endofminecraft.client.EndItemProperties;
+import endofminecraft.client.PlanetAlphaEffects;
 import endofminecraft.data.client.EndItems;
 import endofminecraft.server.EndRegistry;
 import endofminecraft.server.radiation.RadiationCommand;
 import endofminecraft.server.util.EndRegistrate;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -67,6 +69,9 @@ public class EndOfMinecraftMod {
 
 	private void clientSetup(FMLClientSetupEvent event) {
 		EndItemProperties.registerItemProperties();
+
+		DimensionSpecialEffects planetAlphaEffects = new PlanetAlphaEffects();
+		DimensionSpecialEffects.EFFECTS.put(UTILS.mod("planet_alpha_render"), planetAlphaEffects);
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
