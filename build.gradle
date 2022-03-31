@@ -67,7 +67,7 @@ sourceSets.main.resources {
 shadowJar {
 	classifier = ''
 	configurations = [project.configurations.shade]
-	relocate 'com.tterrag.registrate', 'roses.repack.registrate'
+	relocate 'com.tterrag.registrate', 'endofminecraft.repack.registrate'
 }
 
 mixin {
