@@ -12,7 +12,7 @@ public class EndOfMinecraftData implements DataGeneratorEntrypoint {
 		DataHandler dataHandler = new DataHandler(fabricDataGenerator);
 		dataHandler.addProvider(EndOfMinecraftBlockStateProvider::new);
 		dataHandler.addProvider(EndOfMinecraftItemModelProvider::new);
-		dataHandler.addLanguageProvider((fabricDataOutput, modId) -> new EndOfMinecraftLanguageProvider(fabricDataOutput, modId, "en_us"));
+		dataHandler.addProvider((fabricDataOutput, modId) -> new EndOfMinecraftLanguageProvider(fabricDataOutput, modId, "en_us"));
 
 		dataHandler.addProvider(EndOfMinecraftDimensionProvider::new);
 		dataHandler.addProvider((fabricDataOutput, modId) -> new EndOfMinecraftBlockLootTableProvider(fabricDataOutput));
