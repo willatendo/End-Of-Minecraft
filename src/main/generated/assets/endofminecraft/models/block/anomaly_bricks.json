@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "endofminecraft:block/anomaly_bricks"
+  }
+}

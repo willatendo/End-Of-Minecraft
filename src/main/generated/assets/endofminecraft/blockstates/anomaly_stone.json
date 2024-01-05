@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "active=false,facing=east": {
+      "model": "endofminecraft:block/anomaly_stone",
+      "y": 90
+    },
+    "active=false,facing=north": {
+      "model": "endofminecraft:block/anomaly_stone"
+    },
+    "active=false,facing=south": {
+      "model": "endofminecraft:block/anomaly_stone",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "endofminecraft:block/anomaly_stone",
+      "y": 270
+    },
+    "active=true,facing=east": {
+      "model": "endofminecraft:block/anomaly_stone",
+      "y": 90
+    },
+    "active=true,facing=north": {
+      "model": "endofminecraft:block/anomaly_stone"
+    },
+    "active=true,facing=south": {
+      "model": "endofminecraft:block/anomaly_stone",
+      "y": 180
+    },
+    "active=true,facing=west": {
+      "model": "endofminecraft:block/anomaly_stone",
+      "y": 270
+    }
+  }
+}

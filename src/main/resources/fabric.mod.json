@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "endofminecraft",
+	"version": "1.0.0",
+	"name": "End of Minecraft",
+	"description": "Adds a new wasteland world preset to live out your wasteland fantasies",
+	"authors": [
+		"Willatendo"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": ""
+	},
+	"accessWidener": "endofminecraft.accesswidener",
+	"license": "MIT",
+	"icon": "",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"willatendo.endofminecraft.EndOfMinecraftMod"
+		],
+		"client": [
+			"willatendo.endofminecraft.client.EndOfMinecraftClient"
+		],
+		"fabric-datagen": [
+			"willatendo.endofminecraft.data.EndOfMinecraftData"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}

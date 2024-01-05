@@ -1,0 +1,67 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"bottom": "endofminecraft:block/anomaly_stone_bottom",
+		"cap": "endofminecraft:block/anomaly_stone_cap",
+		"left": "endofminecraft:block/anomaly_stone_left",
+		"right": "endofminecraft:block/anomaly_stone_right",
+		"top": "endofminecraft:block/anomaly_stone_top",
+		"particle": "endofminecraft:block/anomaly_stone_bottom"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#cap"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#right"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#cap"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#left"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [0, 16, 16],
+			"faces": {
+				"east": {"uv": [16, 0, 0, 16], "texture": "#left"}
+			}
+		},
+		{
+			"from": [16, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"west": {"uv": [16, 0, 0, 16], "texture": "#right"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 0],
+			"faces": {
+				"south": {"uv": [16, 0, 0, 16], "texture": "#cap"}
+			}
+		},
+		{
+			"from": [0, 0, 16],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#cap"}
+			}
+		},
+		{
+			"from": [0, 16, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"down": {"uv": [0, 16, 16, 0], "texture": "#top"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 0, 16],
+			"faces": {
+				"up": {"uv": [0, 16, 16, 0], "texture": "#bottom"}
+			}
+		}
+	]
+}

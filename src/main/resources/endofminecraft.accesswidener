@@ -1,0 +1,7 @@
+accessWidener v2 named
+
+accessible class net/minecraft/world/level/biome/MultiNoiseBiomeSourceParameterList$Preset$SourceProvider
+accessible field net/minecraft/world/level/biome/MultiNoiseBiomeSourceParameterList$Preset BY_NAME Ljava/util/Map;
+
+accessible field net/minecraft/data/registries/VanillaRegistries BUILDER Lnet/minecraft/core/RegistrySetBuilder;
+accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;

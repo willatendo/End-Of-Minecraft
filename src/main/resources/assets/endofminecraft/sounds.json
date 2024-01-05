@@ -1,8 +1,0 @@
-{
-	"sound.endofminecraft.radiation.fuzz": {
-		"subtitle": "subtitle.endofminecraft.radiation_fuzz",
-		"sounds": [
-			"endofminecraft:radiation_fuzz"
-		]
-	}
-}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "endofminecraft:item/anomaly_detector_02"
+  }
+}

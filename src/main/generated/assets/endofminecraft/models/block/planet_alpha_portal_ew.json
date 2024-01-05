@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/nether_portal_ew",
+  "textures": {
+    "particle": "endofminecraft:block/planet_alpha_portal",
+    "portal": "endofminecraft:block/planet_alpha_portal"
+  }
+}

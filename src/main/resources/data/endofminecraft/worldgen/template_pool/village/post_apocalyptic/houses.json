@@ -1,0 +1,338 @@
+{
+	"fallback": "endofminecraft:village/post_apocalyptic/terminators",
+	"elements": [
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_2",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_3",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_4",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_5",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_6",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_7",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_small_house_8",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_medium_house_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_medium_house_2",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_butcher_shop_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_tool_smith_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_fletcher_house_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_shepherd_house_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_armorer_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_fisher_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_tannery_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_cartographer_house_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_library_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_mason_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_weaponsmith_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_temple_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_temple_2",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 11,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_large_farm_1",
+				"processors": "endofminecraft:farm_post_apocalyptic"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_farm_1",
+				"processors": "endofminecraft:farm_post_apocalyptic"
+			}
+		},
+		{
+			"weight": 4,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_farm_2",
+				"processors": "endofminecraft:farm_post_apocalyptic"
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_animal_pen_1",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 2,
+			"element": {
+				"element_type": "minecraft:legacy_single_pool_element",
+				"projection": "rigid",
+				"location": "endofminecraft:village/post_apocalyptic/houses/post_apocalyptic_animal_pen_2",
+				"processors": {
+					"processors": [
+					]
+				}
+			}
+		},
+		{
+			"weight": 5,
+			"element": {
+				"element_type": "minecraft:empty_pool_element"
+			}
+		}
+	]
+}

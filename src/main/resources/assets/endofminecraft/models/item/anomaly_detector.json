@@ -1,0 +1,41 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "endofminecraft:item/anomaly_detector_16"
+    },
+    "overrides": [
+        { "predicate": { "endofminecraft:anomaly_direction": 0.000000 }, "model": "endofminecraft:item/anomaly_detector" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.015625 }, "model": "endofminecraft:item/anomaly_detector_17" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.046875 }, "model": "endofminecraft:item/anomaly_detector_18" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.078125 }, "model": "endofminecraft:item/anomaly_detector_19" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.109375 }, "model": "endofminecraft:item/anomaly_detector_20" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.140625 }, "model": "endofminecraft:item/anomaly_detector_21" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.171875 }, "model": "endofminecraft:item/anomaly_detector_22" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.203125 }, "model": "endofminecraft:item/anomaly_detector_23" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.234375 }, "model": "endofminecraft:item/anomaly_detector_24" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.265625 }, "model": "endofminecraft:item/anomaly_detector_25" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.296875 }, "model": "endofminecraft:item/anomaly_detector_26" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.328125 }, "model": "endofminecraft:item/anomaly_detector_27" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.359375 }, "model": "endofminecraft:item/anomaly_detector_28" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.390625 }, "model": "endofminecraft:item/anomaly_detector_29" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.421875 }, "model": "endofminecraft:item/anomaly_detector_30" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.453125 }, "model": "endofminecraft:item/anomaly_detector_31" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.484375 }, "model": "endofminecraft:item/anomaly_detector_00" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.515625 }, "model": "endofminecraft:item/anomaly_detector_01" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.546875 }, "model": "endofminecraft:item/anomaly_detector_02" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.578125 }, "model": "endofminecraft:item/anomaly_detector_03" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.609375 }, "model": "endofminecraft:item/anomaly_detector_04" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.640625 }, "model": "endofminecraft:item/anomaly_detector_05" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.671875 }, "model": "endofminecraft:item/anomaly_detector_06" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.703125 }, "model": "endofminecraft:item/anomaly_detector_07" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.734375 }, "model": "endofminecraft:item/anomaly_detector_08" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.765625 }, "model": "endofminecraft:item/anomaly_detector_09" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.796875 }, "model": "endofminecraft:item/anomaly_detector_10" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.828125 }, "model": "endofminecraft:item/anomaly_detector_11" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.859375 }, "model": "endofminecraft:item/anomaly_detector_12" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.890625 }, "model": "endofminecraft:item/anomaly_detector_13" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.921875 }, "model": "endofminecraft:item/anomaly_detector_14" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.953125 }, "model": "endofminecraft:item/anomaly_detector_15" },
+        { "predicate": { "endofminecraft:anomaly_direction": 0.984375 }, "model": "endofminecraft:item/anomaly_detector" }
+    ]
+}

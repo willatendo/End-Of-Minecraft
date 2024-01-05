@@ -1,0 +1,8 @@
+// 1.20.4	2024-01-04T15:45:29.3330863	End of Minecraft/Block States: endofminecraft
+640b6c743dcb1ddad101b900804022fd0b4ba38a assets\endofminecraft\models\block\anomaly_stone.json
+8533ab91af8b1091726d8f8a5f6e176250cdbe9b assets\endofminecraft\blockstates\anomaly_stone.json
+6a12677b535703b2712795bcd632f0fbfda4538e assets\endofminecraft\blockstates\anomaly_bricks.json
+e387b39eaa79ad70a69654d13e7f6ab02903de48 assets\endofminecraft\models\block\anomaly_bricks.json
+21e43ea441b7cb134463f110c6f8b11dca997d8a assets\endofminecraft\models\block\planet_alpha_portal_ns.json
+ae3ceeba4cdf37b238e9cfa31360d40441a75410 assets\endofminecraft\models\block\planet_alpha_portal_ew.json
+a66444ee99a812845db44963797b8e0f94affd3e assets\endofminecraft\blockstates\planet_alpha_portal.json
