@@ -5,3 +5,12 @@ accessible field net/minecraft/world/level/biome/MultiNoiseBiomeSourceParameterL
 
 accessible field net/minecraft/data/registries/VanillaRegistries BUILDER Lnet/minecraft/core/RegistrySetBuilder;
 accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;
+
+accessible field net/minecraft/client/renderer/DimensionSpecialEffects EFFECTS Lit/unimi/dsi/fastutil/objects/Object2ObjectMap;
+
+accessible field net/minecraft/client/renderer/LevelRenderer level Lnet/minecraft/client/multiplayer/ClientLevel;
+accessible field net/minecraft/client/renderer/LevelRenderer minecraft Lnet/minecraft/client/Minecraft;
+accessible field net/minecraft/client/renderer/LevelRenderer skyBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
+accessible field net/minecraft/client/renderer/LevelRenderer starBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
+accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
+accessible method net/minecraft/client/renderer/LevelRenderer doesMobEffectBlockSky (Lnet/minecraft/client/Camera;)Z

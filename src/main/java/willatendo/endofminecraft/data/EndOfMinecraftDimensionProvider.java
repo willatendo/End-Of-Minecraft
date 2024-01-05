@@ -18,6 +18,6 @@ public class EndOfMinecraftDimensionProvider extends SimpleDimensionProvider {
 		JsonObject biomeSource = new JsonObject();
 		biomeSource.addProperty("type", "minecraft:multi_noise");
 		biomeSource.addProperty("preset", "minecraft:overworld");
-		this.dimension("planet_alpha", "endofminecraft:" + dimensionType, "minecraft:noise", "minecraft:overworld", biomeSource);
+		this.dimension("planet_alpha", "endofminecraft:" + dimensionType, "minecraft:noise", "endofminecraft:planet_alpha_effects", biomeSource);
 	}
 }
