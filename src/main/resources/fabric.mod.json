@@ -3,17 +3,17 @@
 	"id": "endofminecraft",
 	"version": "1.0.0",
 	"name": "End of Minecraft",
-	"description": "Adds a new wasteland world preset to live out your wasteland fantasies",
+	"description": "Adds a new wasteland world preset to live out your wasteland fantasies!",
 	"authors": [
 		"Willatendo"
 	],
 	"contact": {
-		"homepage": "",
-		"sources": ""
+		"homepage": "https://modrinth.com/mod/end-of-minecraft",
+		"sources": "https://github.com/willatendo/End-Of-Minecraft"
 	},
 	"accessWidener": "endofminecraft.accesswidener",
 	"license": "MIT",
-	"icon": "",
+	"icon": "end_of_minecraft_icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

@@ -26,30 +26,5 @@ public class EndOfMinecraftEvents {
 				}
 			}
 		});
-//		EntitySleepEvents.STOP_SLEEPING.register((livingEntity, blockPos) -> {
-//			Level level = livingEntity.level();
-//			if (level.dimension() == EndOfMinecraftDimensions.PLANET_ALPHA) {
-//				if (level instanceof ServerLevel serverLevel) {
-//					if (serverLevel.getGameRules().getBoolean(GameRules.RULE_DAYLIGHT)) {
-//						long l = level.getLevelData().getDayTime() + 24000L;
-//						serverLevel.setDayTime(l - l % 24000L);
-//					}
-////					serverLevel.wakeUpAllPlayers();
-//					if (serverLevel.getGameRules().getBoolean(GameRules.RULE_WEATHER_CYCLE) && serverLevel.isRaining()) {
-//						serverLevel.resetWeatherCycle();
-//					}
-//				}
-//			}
-//		});
-//		ServerEntityWorldChangeEvents.AFTER_ENTITY_CHANGE_WORLD.register((originalEntity, newEntity, originServerLevel, destinationServerLevel) -> {
-//			if (destinationServerLevel.dimension() == EndOfMinecraftDimensions.PLANET_ALPHA) {
-//				// Place Portal
-//			}
-//		});
-//		ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register((serverPlayer, originServerLevel, destinationServerLevel) -> {
-//			if (destinationServerLevel.dimension() == EndOfMinecraftDimensions.PLANET_ALPHA) {
-//				// Place Portal
-//			}
-//		});
 	}
 }

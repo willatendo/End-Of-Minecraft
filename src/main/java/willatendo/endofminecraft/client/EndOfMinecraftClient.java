@@ -5,10 +5,8 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import willatendo.endofminecraft.client.dimension.PlanetAlphaEffects;
 import willatendo.endofminecraft.client.dimension.PlanetAlphaSkyRenderer;
 import willatendo.endofminecraft.client.model.AnomalyStoneModel;
 import willatendo.endofminecraft.client.particle.EndOfMinecraftParticleTypes;
@@ -17,7 +15,6 @@ import willatendo.endofminecraft.client.renderer.AnomalyStoneRenderer;
 import willatendo.endofminecraft.server.block.EndOfMinecraftBlocks;
 import willatendo.endofminecraft.server.block.entity.EndOfMinecraftBlockEntities;
 import willatendo.endofminecraft.server.dimension.EndOfMinecraftDimensions;
-import willatendo.endofminecraft.server.util.EndOfMinecraftUtils;
 
 public class EndOfMinecraftClient implements ClientModInitializer {
 	@Override
@@ -30,9 +27,6 @@ public class EndOfMinecraftClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(EndOfMinecraftModels.ANOMALY_STONE, AnomalyStoneModel::createBodyLayer);
 
 		BlockEntityRenderers.register(EndOfMinecraftBlockEntities.ANOMALY_STONE.get(), AnomalyStoneRenderer::new);
-
-		PlanetAlphaEffects planetAlphaEffects = new PlanetAlphaEffects();
-		DimensionSpecialEffects.EFFECTS.put(EndOfMinecraftUtils.resource("planet_alpha_effects"), planetAlphaEffects);
 
 		DimensionRenderingRegistry.registerSkyRenderer(EndOfMinecraftDimensions.PLANET_ALPHA, (worldRenderContext) -> PlanetAlphaSkyRenderer.renderSky(worldRenderContext));
 	}

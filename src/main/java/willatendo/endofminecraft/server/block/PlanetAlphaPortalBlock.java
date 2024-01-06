@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -62,28 +63,31 @@ public class PlanetAlphaPortalBlock extends Block {
 	}
 
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+	public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
 		if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
 			if (entity.isOnPortalCooldown()) {
 				entity.setPortalCooldown();
 			} else {
-				if (!entity.level().isClientSide() && !pos.equals(entity.portalEntrancePos)) {
-					entity.portalEntrancePos = pos.immutable();
+				if (!entity.level().isClientSide() && !blockPos.equals(entity.portalEntrancePos)) {
+					entity.portalEntrancePos = blockPos.immutable();
 				}
 
 				if (entity.level() instanceof ServerLevel serverLevel) {
 					MinecraftServer minecraftserver = serverLevel.getServer();
 					ResourceKey<Level> key = entity.level().dimension() == EndOfMinecraftDimensions.PLANET_ALPHA ? Level.OVERWORLD : EndOfMinecraftDimensions.PLANET_ALPHA;
-					ServerLevel serverlevel = minecraftserver.getLevel(key);
-					if (serverlevel != null && !entity.isPassenger()) {
+					ServerLevel endLevel = minecraftserver.getLevel(key);
+					if (endLevel != null && !entity.isPassenger()) {
 						entity.setPortalCooldown();
-						FabricDimensions.teleport(entity, serverlevel, new PortalInfo(entity.position(), Vec3.ZERO, entity.getYRot(), entity.getXRot()));
+						double x = entity.position().x();
+						double z = entity.position().z();
+						double y = serverLevel.getHeight(Heightmap.Types.WORLD_SURFACE, (int) x, (int) z);
+						double finalY = y > -64.0D ? y : 70;
+						FabricDimensions.teleport(entity, endLevel, new PortalInfo(new Vec3(x, finalY, z), Vec3.ZERO, entity.getYRot(), entity.getXRot()));
 					}
 				}
 			}
 		}
-
-		super.entityInside(state, level, pos, entity);
+		super.entityInside(blockState, level, blockPos, entity);
 	}
 
 	@Override
