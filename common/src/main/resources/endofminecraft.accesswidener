@@ -1,0 +1,25 @@
+accessWidener v2 named
+
+accessible class net/minecraft/world/level/biome/MultiNoiseBiomeSourceParameterList$Preset$SourceProvider
+accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
+accessible class net/minecraft/client/particle/ParticleEngine$SpriteParticleRegistration
+
+accessible field net/minecraft/world/entity/npc/VillagerType BY_BIOME Ljava/util/Map;
+accessible field net/minecraft/world/level/biome/MultiNoiseBiomeSourceParameterList$Preset BY_NAME Ljava/util/Map;
+accessible field net/minecraft/data/registries/VanillaRegistries BUILDER Lnet/minecraft/core/RegistrySetBuilder;
+accessible field net/minecraft/world/entity/Entity portalEntrancePos Lnet/minecraft/core/BlockPos;
+accessible field net/minecraft/client/renderer/DimensionSpecialEffects EFFECTS Lit/unimi/dsi/fastutil/objects/Object2ObjectMap;
+accessible field net/minecraft/client/renderer/LevelRenderer level Lnet/minecraft/client/multiplayer/ClientLevel;
+accessible field net/minecraft/client/renderer/LevelRenderer minecraft Lnet/minecraft/client/Minecraft;
+accessible field net/minecraft/client/renderer/LevelRenderer skyBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
+accessible field net/minecraft/client/renderer/LevelRenderer starBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
+accessible field net/minecraft/client/renderer/LevelRenderer darkBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
+accessible field net/minecraft/world/level/levelgen/structure/pools/StructurePoolElement EMPTY Lnet/minecraft/core/Holder;
+
+accessible method net/minecraft/client/renderer/LevelRenderer doesMobEffectBlockSky (Lnet/minecraft/client/Camera;)Z
+accessible method net/minecraft/world/entity/npc/VillagerType <init> (Ljava/lang/String;)V
+accessible method net/minecraft/world/level/levelgen/NoiseRouterData overworld (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;ZZ)Lnet/minecraft/world/level/levelgen/NoiseRouter;
+accessible method net/minecraft/data/worldgen/Structures structure (Lnet/minecraft/core/HolderSet;Lnet/minecraft/world/level/levelgen/structure/TerrainAdjustment;)Lnet/minecraft/world/level/levelgen/structure/Structure$StructureSettings;
+accessible method net/minecraft/world/level/levelgen/structure/pools/LegacySinglePoolElement <init> (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool$Projection;)V
+accessible method net/minecraft/client/renderer/item/ItemProperties register (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/item/ClampedItemPropertyFunction;)V
+accessible method net/minecraft/world/damagesource/DamageSources source (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/damagesource/DamageSource;

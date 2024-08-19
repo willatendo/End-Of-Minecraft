@@ -1,0 +1,16 @@
+{
+  "placement": {
+    "type": "minecraft:concentric_rings",
+    "count": 3,
+    "distance": 64,
+    "preferred_biomes": "#endofminecraft:has_structure/anomaly_cave",
+    "salt": 0,
+    "spread": 3
+  },
+  "structures": [
+    {
+      "structure": "endofminecraft:anomaly_cave",
+      "weight": 1
+    }
+  ]
+}
